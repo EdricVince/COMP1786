@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectExpenseTracker.Views.ProjectsView"
+             BackgroundColor="#F0F0FA">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*">
+
+        <!-- Dark summary card -->
+        <Frame Grid.Row="0" Margin="16,16,16,8"
+               BackgroundColor="#1E1E2D" CornerRadius="20"
+               HasShadow="True" Padding="20,18">
+            <Grid RowDefinitions="Auto,Auto,Auto">
+                <Label Grid.Row="0" Text="💼  Project Overview"
+                       TextColor="#AAAACC" FontSize="12" FontAttributes="Bold"/>
+                <Label Grid.Row="1" x:Name="lblTotalBudget"
+                       Text="$0.00" TextColor="White"
+                       FontSize="30" FontAttributes="Bold" Margin="0,6,0,14"/>
+                <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*">
+                    <StackLayout Grid.Column="0" Spacing="2">
+                        <Label Text="Projects" TextColor="#AAAACC" FontSize="10"/>
+                        <Label x:Name="lblProjectCount" Text="0"
+                               TextColor="White" FontSize="20" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" Spacing="2">
+                        <Label Text="Spent" TextColor="#AAAACC" FontSize="10"/>
+                        <Label x:Name="lblTotalSpent" Text="$0"
+                               TextColor="#FF7043" FontSize="16" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="2" Spacing="2">
+                        <Label Text="Remaining" TextColor="#AAAACC" FontSize="10"/>
+                        <Label x:Name="lblRemaining" Text="$0"
+                               TextColor="#5EF5A0" FontSize="16" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="3" Spacing="2">
+                        <Label Text="Usage" TextColor="#AAAACC" FontSize="10"/>
+                        <Label x:Name="lblUsage" Text="0%"
+                               TextColor="#7B61FF" FontSize="16" FontAttributes="Bold"/>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </Frame>
+
+        <!-- Search bar -->
+        <Frame Grid.Row="1" Margin="16,0,16,8"
+               BackgroundColor="White" CornerRadius="14"
+               HasShadow="False" Padding="14,10">
+            <Grid ColumnDefinitions="Auto,*">
+                <Label Grid.Column="0" Text="🔍" FontSize="16"
+                       VerticalOptions="Center" Margin="0,0,8,0"/>
+                <Entry Grid.Column="1" x:Name="searchEntry"
+                       Placeholder="Search projects..."
+                       PlaceholderColor="#BCBCC8" TextColor="#1E1E2D"
+                       TextChanged="OnSearchChanged"/>
+            </Grid>
+        </Frame>
+
+        <!-- Action buttons row -->
+        <Grid Grid.Row="2" Margin="16,0,16,10" ColumnDefinitions="*,Auto">
+            <Label Grid.Column="0" x:Name="lblResultCount"
+                   Text="All Projects" TextColor="#7C7C8A"
+                   FontSize="13" VerticalOptions="Center"/>
+            <Button Grid.Column="1" Text="🗑 Clear Cloud"
+                    TextColor="#FF4444" BackgroundColor="White"
+                    CornerRadius="10" Padding="12,6"
+                    FontSize="12" FontAttributes="Bold"
+                    Clicked="OnDeleteAllTapped"/>
+        </Grid>
+
+        <!-- Project list -->
+        <RefreshView Grid.Row="3" x:Name="refreshView" Refreshing="OnRefreshing"
+                     RefreshColor="#7B61FF">
+            <CollectionView x:Name="cvProjects" Margin="16,0,16,16">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,0,0,12" BackgroundColor="White"
+                               CornerRadius="16" HasShadow="False" Padding="16">
+                            <Frame.Shadow>
+                                <Shadow Brush="Black" Offset="0,2"
+                                        Radius="8" Opacity="0.06"/>
+                            </Frame.Shadow>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnProjectTapped"
+                                                      CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                                <!-- Row 0: Code + Status -->
+                                <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,6">
+                                    <Label Grid.Column="0" Text="{Binding Code}"
+                                           TextColor="#BCBCC8" FontSize="11"/>
+                                    <Frame Grid.Column="1" Padding="10,4"
+                                           CornerRadius="10" HasShadow="False"
+                                           BackgroundColor="{Binding StatusBg}">
+                                        <Label Text="{Binding Status}"
+                                               TextColor="{Binding StatusColor}"
+                                               FontSize="11" FontAttributes="Bold"/>
+                                    </Frame>
+                                </Grid>
+                                <!-- Row 1: Name -->
+                                <Label Grid.Row="1" Text="{Binding Name}"
+                                       TextColor="#1E1E2D" FontSize="17"
+                                       FontAttributes="Bold" Margin="0,0,0,3"/>
+                                <!-- Row 2: Manager -->
+                                <Label Grid.Row="2"
+                                       Text="{Binding Manager, StringFormat='👤  {0}'}"
+                                       TextColor="#7C7C8A" FontSize="13" Margin="0,0,0,12"/>
+                                <!-- Row 3: Budget info -->
+                                <Grid Grid.Row="3" ColumnDefinitions="*,Auto,Auto" Margin="0,0,0,6">
+                                    <Label Grid.Column="0"
+                                           Text="{Binding Budget, StringFormat='Budget: ${0:N0}'}"
+                                           TextColor="#7C7C8A" FontSize="12"/>
+                                    <Label Grid.Column="1"
+                                           Text="{Binding TotalSpent, StringFormat='Spent: ${0:N0}'}"
+                                           TextColor="#FF7043" FontSize="12"
+                                           FontAttributes="Bold" Margin="0,0,8,0"/>
+                                    <Label Grid.Column="2"
+                                           Text="{Binding UsagePercent, StringFormat='{0}%'}"
+                                           TextColor="#7B61FF" FontSize="12"
+                                           FontAttributes="Bold"/>
+                                </Grid>
+                                <!-- Row 4: Progress bar -->
+                                <Frame Grid.Row="4" HeightRequest="6"
+                                       BackgroundColor="#EFEFEF" CornerRadius="3"
+                                       HasShadow="False" Padding="0">
+                                    <BoxView BackgroundColor="#7B61FF"
+                                             CornerRadius="3"
+                                             HorizontalOptions="Start"
+                                             WidthRequest="{Binding UsagePercent}"
+                                             HeightRequest="6"/>
+                                </Frame>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <StackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center" Margin="0,60,0,0">
+                        <Label Text="📋" FontSize="48"
+                               HorizontalOptions="Center"/>
+                        <Label Text="No projects found"
+                               TextColor="#BCBCC8" FontSize="16"
+                               HorizontalOptions="Center" Margin="0,8,0,0"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </RefreshView>
+
+    </Grid>
+</ContentPage>
