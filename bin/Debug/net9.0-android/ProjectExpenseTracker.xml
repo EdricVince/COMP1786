@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProjectExpenseTracker</name>
+    </assembly>
+    <members>
+        <member name="T:ProjectExpenseTracker.Models.Expense">
+            <summary>
+            Expense fetched from a project's sub-collection in Firestore.
+            </summary>
+        </member>
+        <member name="T:ProjectExpenseTracker.Models.Project">
+            <summary>
+            Project fetched from Firebase Firestore.
+            Computed properties (TotalSpent, Remaining, UsagePercent) are derived
+            from the Expenses list which is loaded separately on the detail screen.
+            </summary>
+        </member>
+        <member name="T:ProjectExpenseTracker.Services.FavouritesService">
+             <summary>
+             Persists favourite project IDs locally using MAUI Preferences.
+             Feature (h) — favourite projects.
+            
+             Storage key: "fav_ids"
+             Format: comma-separated Firestore document IDs
+             </summary>
+        </member>
+        <member name="M:ProjectExpenseTracker.Services.FavouritesService.IsFavourite(System.String)">
+            <summary>Returns true if the project is marked as a favourite.</summary>
+        </member>
+        <member name="M:ProjectExpenseTracker.Services.FavouritesService.Toggle(System.String)">
+            <summary>Adds to favourites if not present; removes if present.</summary>
+        </member>
+        <member name="M:ProjectExpenseTracker.Services.FavouritesService.GetAll">
+            <summary>Returns a snapshot of all favourite IDs.</summary>
+        </member>
+        <member name="T:ProjectExpenseTracker.ViewModels.Base.BaseViewModel">
+            <summary>
+            Base class for all ViewModels.
+            Provides INotifyPropertyChanged and common state properties (IsLoading, IsEmpty).
+            </summary>
+        </member>
+        <member name="T:ProjectExpenseTracker.ViewModels.FavouritesViewModel">
+            <summary>
+            ViewModel for FavouritesView.
+            Loads only the projects the user has starred.
+            Feature (h) — favourite projects.
+            </summary>
+        </member>
+        <member name="T:ProjectExpenseTracker.ViewModels.ProjectDetailViewModel">
+            <summary>
+            ViewModel for ProjectDetailView.
+            Loads expenses for the selected project and manages the favourite toggle.
+            </summary>
+        </member>
+        <member name="T:ProjectExpenseTracker.ViewModels.ProjectsViewModel">
+            <summary>
+            ViewModel for ProjectsView.
+            Fetches all projects from Firebase and handles search + status filtering.
+            </summary>
+        </member>
+        <member name="T:ProjectExpenseTracker.Resource">
+            <summary>
+            Android Resource Designer class.
+            Exposes the Android Resource designer assembly into the project Namespace.
+            </summary>
+        </member>
+    </members>
+</doc>

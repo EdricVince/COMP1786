@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:ProjectExpenseTracker.Views"
+       x:Class="ProjectExpenseTracker.AppShell">
+
+    <Shell.Resources>
+        <Style TargetType="TabBar">
+            <Setter Property="Shell.TabBarBackgroundColor" Value="#1E1E2D"/>
+            <Setter Property="Shell.TabBarForegroundColor" Value="#7B61FF"/>
+            <Setter Property="Shell.TabBarUnselectedColor" Value="#7C7C8A"/>
+            <Setter Property="Shell.TabBarTitleColor"      Value="#7B61FF"/>
+        </Style>
+        <Style TargetType="Shell">
+            <Setter Property="Shell.BackgroundColor"       Value="#1E1E2D"/>
+            <Setter Property="Shell.ForegroundColor"       Value="White"/>
+            <Setter Property="Shell.TitleColor"            Value="White"/>
+        </Style>
+    </Shell.Resources>
+
+    <TabBar>
+        <ShellContent Title="Projects" Icon="📋"
+                      ContentTemplate="{DataTemplate views:ProjectsView}"
+                      Route="ProjectsView"/>
+        <ShellContent Title="Favourites" Icon="⭐"
+                      ContentTemplate="{DataTemplate views:FavouritesView}"
+                      Route="FavouritesView"/>
+    </TabBar>
+</Shell>
