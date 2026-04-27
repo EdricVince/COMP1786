@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PexTrack</string>
+    <string name="app_tagline">Expense Budget Manager</string>
+
+    <!-- Navigation -->
+    <string name="nav_projects">Budgets</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_upload">Sync</string>
+
+    <!-- Budget form -->
+    <string name="lbl_project_code">Budget ID / Code *</string>
+    <string name="lbl_project_name">Budget Name *</string>
+    <string name="lbl_project_description">Description *</string>
+    <string name="lbl_start_date">Start Date *</string>
+    <string name="lbl_end_date">End Date *</string>
+    <string name="lbl_manager">Manager / Owner *</string>
+    <string name="lbl_status">Status *</string>
+    <string name="lbl_budget">Total Budget (USD) *</string>
+    <string name="lbl_special_requirements">Special Requirements (optional)</string>
+    <string name="lbl_client_info">Client / Department (optional)</string>
+
+    <!-- Expense form -->
+    <string name="lbl_expense_id">Expense ID *</string>
+    <string name="lbl_expense_date">Date of Expense *</string>
+    <string name="lbl_amount">Amount *</string>
+    <string name="lbl_currency">Currency *</string>
+    <string name="lbl_expense_type">Type of Expense *</string>
+    <string name="lbl_payment_method">Payment Method *</string>
+    <string name="lbl_claimant">Claimant *</string>
+    <string name="lbl_payment_status">Payment Status *</string>
+    <string name="lbl_description">Description (optional)</string>
+    <string name="lbl_location">Location (optional)</string>
+
+    <!-- Actions -->
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_edit">Edit</string>
+    <string name="btn_upload">Upload to Cloud</string>
+    <string name="btn_add_project">Add Budget</string>
+    <string name="btn_add_expense">Add Expense</string>
+    <string name="btn_search">Search</string>
+
+    <!-- Messages -->
+    <string name="msg_project_saved">Budget saved successfully</string>
+    <string name="msg_project_deleted">Budget deleted</string>
+    <string name="msg_expense_saved">Expense saved successfully</string>
+    <string name="msg_expense_deleted">Expense deleted</string>
+    <string name="msg_upload_success">Upload successful!</string>
+    <string name="msg_upload_failed">Upload failed. Check connection and retry.</string>
+    <string name="msg_no_network">No internet connection available</string>
+    <string name="msg_empty_projects">No budgets yet.
+Tap + to add one.</string>
+    <string name="msg_empty_expenses">No expenses recorded.
+Tap + to add one.</string>
+    <string name="msg_empty_search">No results found.</string>
+    <string name="msg_confirm_delete_project">Delete this budget and all its expenses?</string>
+    <string name="msg_confirm_delete_expense">Delete this expense?</string>
+
+    <!-- Hints -->
+    <string name="hint_search">Search budgets…</string>
+    <string name="hint_api_url">https://your-api-url.com/budgets</string>
+
+    <!-- Errors -->
+    <string name="err_required">This field is required</string>
+    <string name="err_invalid_amount">Please enter a valid amount</string>
+    <string name="err_end_before_start">End date must be after start date</string>
+    <string name="err_invalid_budget">Please enter a valid budget amount</string>
+</resources>

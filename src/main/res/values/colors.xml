@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary purple (inspired by image) -->
+    <color name="primary">#7B61FF</color>
+    <color name="primary_dark">#5B3FDF</color>
+    <color name="primary_light">#EDE9FF</color>
+
+    <!-- Secondary -->
+    <color name="secondary">#FF7043</color>
+
+    <!-- Accent orange -->
+    <color name="accent">#FF7043</color>
+    <color name="accent_light">#FFF0EC</color>
+
+    <!-- Dark card (like the credit-card style in image) -->
+    <color name="card_dark">#1E1E2D</color>
+    <color name="card_dark2">#2D2B55</color>
+
+    <!-- Backgrounds -->
+    <color name="background">#F5F5FA</color>
+    <color name="surface">#FFFFFF</color>
+
+    <!-- Text -->
+    <color name="on_primary">#FFFFFF</color>
+    <color name="text_primary">#1E1E2D</color>
+    <color name="text_secondary">#7C7C8A</color>
+    <color name="text_hint">#BCBCC8</color>
+
+    <!-- Status chips -->
+    <color name="status_active_bg">#E8F9EE</color>
+    <color name="status_active_text">#1A9E4A</color>
+    <color name="status_completed_bg">#E8F0FF</color>
+    <color name="status_completed_text">#2563EB</color>
+    <color name="status_on_hold_bg">#FFF4E5</color>
+    <color name="status_on_hold_text">#D97706</color>
+
+    <!-- Payment status -->
+    <color name="paid_bg">#E8F9EE</color>
+    <color name="paid_text">#1A9E4A</color>
+    <color name="pending_bg">#FFF4E5</color>
+    <color name="pending_text">#D97706</color>
+    <color name="reimbursed_bg">#E8F0FF</color>
+    <color name="reimbursed_text">#2563EB</color>
+
+    <!-- Misc -->
+    <color name="divider">#EFEFEF</color>
+    <color name="ripple">#1A7B61FF</color>
+    <color name="error">#EF4444</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="progress_track">#EFEFEF</color>
+</resources>
